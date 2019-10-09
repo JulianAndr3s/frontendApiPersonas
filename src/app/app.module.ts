@@ -9,6 +9,9 @@ import { ListaPersonaComponent } from './components/partes/lista-persona/lista-p
 import { FormularioPersonaComponent } from './components/partes/formulario-persona/formulario-persona.component';
 import { PersonaService } from './service/persona.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { TipodocumentoService } from './service/tipodocumento.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,11 +21,13 @@ import { HttpClientModule } from '@angular/common/http';
     FormularioPersonaComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [PersonaService],
+  providers: [PersonaService, TipodocumentoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

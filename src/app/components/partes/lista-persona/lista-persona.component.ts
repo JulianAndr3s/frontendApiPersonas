@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgModule } from '@angular/core';
 import { Persona } from 'src/app/modelo/persona';
 import { PersonaService } from 'src/app/service/persona.service';
+import { TipodocumentoService } from '../../../service/tipodocumento.service';
+import { Tipodocumento } from '../../../modelo/tipodocumento';
 
 @Component({
   selector: 'app-lista-persona',
@@ -10,16 +12,17 @@ import { PersonaService } from 'src/app/service/persona.service';
 })
 export class ListaPersonaComponent implements OnInit {
 
-  private personas: Persona[];
-  constructor(private personaService: PersonaService) {
-  }
+  public persona: Persona = new Persona();
+  public documento: Tipodocumento = new Tipodocumento();
+  public personas: Persona[];
+  public documentos: Tipodocumento[];
+  constructor(private documentoService: TipodocumentoService, private personaService: PersonaService) { }
 
   ngOnInit() {
     this.personaService.listAll().subscribe(
-      (personas) => {
-        this.personas = personas;
+      (persona) => {
+        this.personas = persona;
       }
     );
   }
-
 }

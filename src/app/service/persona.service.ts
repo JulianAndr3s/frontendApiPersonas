@@ -13,13 +13,11 @@ export class PersonaService {
   constructor(private http: HttpClient) { }
 
 
-  listAll(): Observable<Persona[]>{
+  listAll(): Observable<Persona[]> {
     return this.http.get<Persona[]>(Endpoints.LISTAR);
   }
-
-  insert(persona: Persona): Observable<Persona>{
-    return this.http.post<Persona>(Endpoints.INSERTAR,persona,{headers:Header.HEADER_JSON});
+  insert(persona: Persona): Observable<Persona> {
+    return this.http.post<Persona>(Endpoints.INSERTAR, persona , {headers : Header.HEADER_JSON});
   }
-
-
+}
 
