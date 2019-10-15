@@ -35,7 +35,6 @@ export class FormularioPersonaComponent implements OnInit {
         this.router.navigate(['/lista-persona']);
       }
     );
-    // alert(this.persona.tipodocumento);
   }
 
 }

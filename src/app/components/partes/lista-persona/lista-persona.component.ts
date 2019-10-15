@@ -13,6 +13,7 @@ import { Tipodocumento } from '../../../modelo/tipodocumento';
 export class ListaPersonaComponent implements OnInit {
 
   public persona: Persona = new Persona();
+  public personaSeleccionada: Persona;
   public documento: Tipodocumento = new Tipodocumento();
   public personas: Persona[];
   public documentos: Tipodocumento[];
@@ -25,4 +26,17 @@ export class ListaPersonaComponent implements OnInit {
       }
     );
   }
+
+  showModal(persona: Persona) {
+    this.personaSeleccionada = persona;
+  }
+
+  eliminar(id: number) {
+    this.personaService.eliminar(id).subscribe(
+      _ => (
+        this.personas = this.personas.filter(persona => persona !== this.personaSeleccionada)
+      )
+    );
+  }
+
 }
