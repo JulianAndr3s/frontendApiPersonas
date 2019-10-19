@@ -6,7 +6,7 @@
         <blockquote class="blockquote mb-0">
             <div *ngIf="personas.length == 0">
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Lo siento!</strong>No hay personas en la base de datos.
+                    <strong>Lo siento! </strong>No hay personas en la base de datos.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
@@ -17,7 +17,7 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Id</th>
+                            <th scope="col">Documento</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellidos</th>
                             <th scope="col">Teléfono</th>
@@ -27,12 +27,13 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let persona of personas">
-                            <th scope="row">{{persona.id}}</th>
-                            <td>{{persona.nombre | uppercase}}</td>
+                            <th scope="row">{{persona.tipoDocumento.sigla +" "+ persona.numeroDocumento}}</th>
+                            <td>{{persona.nombre}}</td>
                             <td>{{persona.apellido}}</td>
                             <td>{{persona.telefono}}</td>
                             <td>{{persona.tipoDocumento.nombre}}</td>
-                            <td><a href="#" class="btn btn-primary btn-lg">Editar</a>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2" (click)="showModal(persona)">Editar</button>
                                 <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal" (click)="showModal(persona)">Eliminar</button>
                             </td>
                         </tr>
@@ -46,7 +47,7 @@
 
 
 
-<!-- The Modal -->
+<!-- The Modal Eliminar-->
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -65,6 +66,79 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="eliminar(personaSeleccionada.id)">Aceptar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- The Modal Editar-->
+<div class="modal fade" id="myModal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Editar</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header">
+                        Actualizar persona
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>Favor diligenciar el formulario</p>
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="nombres">Nombres</label>
+                                        <input type="text" class="form-control" id="nombres" name="nombre" [(ngModel)]="persona.nombre" minlength="3" #nombres="ngModel" required>
+                                        <div class="alert alert-danger" *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)">
+                                            <div *ngIf="nombres?.errors.required">Nombre es requerido</div>
+                                            <div *ngIf="nombres?.errors.minlength">Nombre debe terner al menos 3 caracteres</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="apellido">Apellidos</label>
+                                        <input type="text" class="form-control" id="apellidos" name="apellido" [(ngModel)]="persona.apellido" minlength="3" #apellidos="ngModel" required>
+                                        <div class="alert alert-danger" *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+                                            <div *ngIf="apellidos?.errors.required">Apellido es requerido</div>
+                                            <div *ngIf="apellidos?.errors.minlength">Apellido debe tener al menos 3 caracteres</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="telefono">Teléfono</label>
+                                        <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="persona.telefono">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div class="form-group">
+                                            <label for="id">Tipo de documento</label>
+                                            <select class="form-control" [(ngModel)]="id" id="id" name="id">
+                                                    <option *ngFor="let documento of documentos" [value]="documento.id" >{{documento.nombre}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <label for="id">Numero de documento</label>
+                                    <input type="text" class="form-control" id="numeroDocumento" name="numeroDocumento" [(ngModel)]="persona.numeroDocumento">
+                                </div>
+                            </form>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
             </div>
 
         </div>

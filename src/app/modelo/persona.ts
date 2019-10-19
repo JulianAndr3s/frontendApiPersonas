@@ -5,5 +5,6 @@ export class Persona {
     nombre: string;
     apellido: string;
     telefono: string;
+    numeroDocumento: string;
     tipoDocumento = new Tipodocumento();
 }

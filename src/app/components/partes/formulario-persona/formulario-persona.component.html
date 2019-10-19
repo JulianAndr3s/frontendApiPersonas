@@ -43,7 +43,7 @@
                                     <option *ngFor="let documento of documentos" [value]="documento.id" >{{documento.nombre}}</option>
                             </select>
                             <label for="id">Numero de documento</label>
-                            <input type="number" class="form-control" placeholder="Numero de documento" id="numerodocumento" name="numerodocumento">
+                            <input type="text" class="form-control" id="numeroDocumento" name="numeroDocumento" [(ngModel)]="persona.numeroDocumento">
                         </div>
                     </div>
                 </div>

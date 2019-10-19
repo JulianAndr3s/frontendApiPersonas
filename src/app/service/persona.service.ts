@@ -19,8 +19,11 @@ export class PersonaService {
   insert(persona: Persona): Observable<Persona> {
     return this.http.post<Persona>(Endpoints.INSERTAR, persona , {headers : Header.HEADER_JSON});
   }
-  eliminar(id: number){
+  eliminar(id: number) {
     return this.http.delete<Persona>(Endpoints.ELIMINAR.concat(id.toString()).concat('/persona'), {headers : Header.HEADER_TEXT} );
+  }
+  actualizar(persona: Persona, id: number) {
+    return this.http.put<Persona>(Endpoints.ACTUALIZAR.concat(id.toString()).concat('/persona'), persona, {headers : Header.HEADER_JSON} );
   }
 }
 
