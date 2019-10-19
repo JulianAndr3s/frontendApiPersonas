@@ -72,7 +72,6 @@
     </div>
 </div>
 
-
 <!-- The Modal Editar-->
 <div class="modal fade" id="myModal2">
     <div class="modal-dialog">
@@ -88,7 +87,7 @@
             <div class="modal-body">
                 <div class="card">
                     <div class="card-header">
-                        Actualizar persona
+                        Actualizar el perfil de {{personaSeleccionada.nombre}} {{personaSeleccionada.apellido}}
                     </div>
                     <div class="card-body">
                         <blockquote class="blockquote mb-0">
@@ -97,7 +96,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="nombres">Nombres</label>
-                                        <input type="text" class="form-control" id="nombres" name="nombre" [(ngModel)]="persona.nombre" minlength="3" #nombres="ngModel" required>
+                                        <input type="text" class="form-control" id="nombres" name="nombre" [(ngModel)]="personaActualizar.nombre" minlength="3" #nombres="ngModel" required>
                                         <div class="alert alert-danger" *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)">
                                             <div *ngIf="nombres?.errors.required">Nombre es requerido</div>
                                             <div *ngIf="nombres?.errors.minlength">Nombre debe terner al menos 3 caracteres</div>
@@ -105,7 +104,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="apellido">Apellidos</label>
-                                        <input type="text" class="form-control" id="apellidos" name="apellido" [(ngModel)]="persona.apellido" minlength="3" #apellidos="ngModel" required>
+                                        <input type="text" class="form-control" id="apellidos" name="apellido" [(ngModel)]="personaActualizar.apellido" minlength="3" #apellidos="ngModel" required>
                                         <div class="alert alert-danger" *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
                                             <div *ngIf="apellidos?.errors.required">Apellido es requerido</div>
                                             <div *ngIf="apellidos?.errors.minlength">Apellido debe tener al menos 3 caracteres</div>
@@ -115,12 +114,12 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="telefono">Teléfono</label>
-                                        <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="persona.telefono">
+                                        <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="personaActualizar.telefono">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <div class="form-group">
                                             <label for="id">Tipo de documento</label>
-                                            <select class="form-control" [(ngModel)]="id" id="id" name="id">
+                                            <select class="form-control" [(ngModel)]="idDocumento" id="idDocumento" name="idDocumento">
                                                     <option *ngFor="let documento of documentos" [value]="documento.id" >{{documento.nombre}}</option>
                                             </select>
                                         </div>
@@ -128,7 +127,7 @@
                                 </div>
                                 <div class="form-row">
                                     <label for="id">Numero de documento</label>
-                                    <input type="text" class="form-control" id="numeroDocumento" name="numeroDocumento" [(ngModel)]="persona.numeroDocumento">
+                                    <input type="text" class="form-control" id="numeroDocumento" name="numeroDocumento" [(ngModel)]="personaActualizar.numeroDocumento">
                                 </div>
                             </form>
                         </blockquote>
@@ -138,7 +137,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="actualizar(personaSeleccionada.id)">Aceptar</button>
             </div>
 
         </div>
