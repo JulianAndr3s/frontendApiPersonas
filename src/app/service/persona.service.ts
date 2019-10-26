@@ -12,9 +12,11 @@ export class PersonaService {
 
   constructor(private http: HttpClient) { }
 
-
   listAll(): Observable<Persona[]> {
     return this.http.get<Persona[]>(Endpoints.LISTAR);
+  }
+  buscar(tipoDocumento: number, numeroDocumento: string): Observable<Persona> {
+    return this.http.get<Persona>(Endpoints.BUSCAR.concat(tipoDocumento.toString()).concat('/').concat(numeroDocumento).concat('/personas'), {headers : Header.HEADER_JSON});
   }
   insert(persona: Persona): Observable<Persona> {
     return this.http.post<Persona>(Endpoints.INSERTAR, persona , {headers : Header.HEADER_JSON});

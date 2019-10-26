@@ -3,8 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/partes/home/home.component';
 import { FormularioPersonaComponent } from './components/partes/formulario-persona/formulario-persona.component';
 import { ListaPersonaComponent } from './components/partes/lista-persona/lista-persona.component';
+import { BuscarPersonaComponent } from './components/partes/buscar-persona/buscar-persona.component';
 
 const routes: Routes = [
+  {path: 'buscar-persona', component:  BuscarPersonaComponent},
   {path: 'lista-persona', component: ListaPersonaComponent},
   {path: 'formulario-persona', component: FormularioPersonaComponent},
   {path: 'home', component: HomeComponent},

@@ -12,13 +12,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TipodocumentoService } from './service/tipodocumento.service';
+import { BuscarPersonaComponent } from './components/partes/buscar-persona/buscar-persona.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
     ListaPersonaComponent,
-    FormularioPersonaComponent
+    FormularioPersonaComponent,
+    BuscarPersonaComponent
   ],
   imports: [
     CommonModule,

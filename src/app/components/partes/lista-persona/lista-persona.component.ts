@@ -56,7 +56,7 @@ export class ListaPersonaComponent implements OnInit {
     this.personaActualizar.tipoDocumento = this.documento;
     this.personaService.actualizar(this.personaActualizar, idActualizar).subscribe(
       _ => {
-        this.router.navigate(['/home']);
+        this.listAllComponents();
       }
     );
   }
