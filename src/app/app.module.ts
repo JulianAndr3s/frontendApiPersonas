@@ -13,6 +13,9 @@ import { FormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TipodocumentoService } from './service/tipodocumento.service';
 import { BuscarPersonaComponent } from './components/partes/buscar-persona/buscar-persona.component';
+import { LoginComponent } from './components/partes/login/login.component';
+import { LoginService } from './service/login.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +23,8 @@ import { BuscarPersonaComponent } from './components/partes/buscar-persona/busca
     HomeComponent,
     ListaPersonaComponent,
     FormularioPersonaComponent,
-    BuscarPersonaComponent
+    BuscarPersonaComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +33,7 @@ import { BuscarPersonaComponent } from './components/partes/buscar-persona/busca
     HttpClientModule,
     FormsModule
   ],
-  providers: [PersonaService, TipodocumentoService],
+  providers: [PersonaService, TipodocumentoService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
